@@ -1,0 +1,35 @@
+﻿@model  ToDoApp.Models.ToDo 
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My ToDo List</h2>
+
+<div id="tableDiv"></div> @*Capturing the _ToDoTable*@
+
+<div id="todoCreateFrom">
+    @using (Ajax.BeginForm("AJAXCreate", "ToDoes",@*This is an Ajax helper*@
+
+    new AjaxOptions @*This gives the helper all the information it needs*@
+    {
+        InsertionMode = InsertionMode.Replace, @*Will be replacing the content of the table div*@
+        HttpMethod = "POST",
+        UpdateTargetId = "tableDiv"
+    }))
+    {
+                        <div class="form-group"> @*This has been taken from Create in Views ToDo*@
+                            @Html.AntiForgeryToken() @*Added in*@              
+                            <div>
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+    }
+</div> @*Arguments are the action, the controller and *@
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script> @*Created to link to Ajax*@
+    <script src="~/Custom_Scripts/BuildTable.js"></script> @*Created*@
+    @Scripts.Render("~/bundles/jqueryval") @*Added in*@
+}
