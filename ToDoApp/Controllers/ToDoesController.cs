@@ -30,7 +30,7 @@ namespace ToDoApp.Controllers
             IEnumerable<ToDo> myToDoes = db.ToDos.ToList().Where(x => x.User == currentUser); ///made for % bar
 
             int completeCount = 0; 
-            foreach(ToDo toDo in myToDoes)
+            foreach(ToDo toDo in myToDoes) ///This initailizes the list 
             {
                 if(toDo.IsDone)
                 {

@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<ToDoApp.Models.ToDo>
+@Styles.Render("~/Content/css")
 
 <div id="progressBarToDo">
-      <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width:@(Html.AttributeEncode(ViewBag.Percent))%"></div>
-             </div>
-     <p class="progress-font">@(ViewBag.Percent)%</p> @*In brackets so the % sign is seen as html*@
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width:@(Html.AttributeEncode(ViewBag.Percent))%"></div>
+    </div>
+    <p class="progress-font">@(ViewBag.Percent)%</p> @*In brackets so the % sign is seen as html*@
 </div>
 
 
 
 <table class="table">
-  
+
 
     @{
         foreach (var item in Model)
@@ -18,19 +19,19 @@
             <tr>
                 <td>
                     @*So this is for crossing off if ToDo IsDone and the class added is created from site.css*@
-                   @if (!item.IsDone)
-                {
-                    @Html.DisplayFor(modelItem => item.Description)
-                }
+                    @if (!item.IsDone)
+                    {
+                        @Html.DisplayFor(modelItem => item.Description)
+                    }
 
-                   else
-                   {
-                <div class="CompletedToDo"> @Html.DisplayFor(modelItem => item.Description)</div>
+                    else
+                    {
+                        <div class="CompletedToDo"> @Html.DisplayFor(modelItem => item.Description)</div>
                     }
 
                 </td>
                 <td>
-                    @Html.CheckBoxFor(modelItem => item.IsDone, new { id=item.Id, @class ="ActiveCheck"})
+                    @Html.CheckBoxFor(modelItem => item.IsDone, new { id = item.Id, @class = "ActiveCheck" })
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
@@ -42,8 +43,8 @@
     }
 </table>
 
-<script src="~/Custom_Scripts/AddCheckBoxListener.js"></script> @*This is here because if it was in the index.cshtml, it would load 
-                                                                    when the page is loaded but you want it to happen when the table is 
-                                                                    uploaded*@
+<script src="~/Custom_Scripts/AddCheckBoxListener.js"></script> @*This is here because if it was in the index.cshtml, it would load
+    when the page is loaded but you want it to happen when the table is
+    uploaded*@
 
 

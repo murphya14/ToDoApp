@@ -35,7 +35,7 @@ namespace ToDoApp.Migrations
 
         void AddUsers(ToDoApp.Models.ApplicationDbContext context) //Created
         {
-            var user = new ApplicationUser { UserName = "user1@gmail.com" };
+            var user = new ApplicationUser { UserName = "user1@email.com" };
             var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             um.Create(user, "password");
         }
